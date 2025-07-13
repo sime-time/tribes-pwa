@@ -3,10 +3,11 @@ import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import vueDevTools from "vite-plugin-vue-devtools";
 import tailwindcss from "@tailwindcss/vite";
+import { cloudflare } from "@cloudflare/vite-plugin";
 import Icons from "unplugin-icons/vite";
 
 export default defineConfig({
-  plugins: [vue(), vueDevTools(), tailwindcss(), Icons()],
+  plugins: [vue(), vueDevTools(), tailwindcss(), cloudflare(), Icons()],
   resolve: {
     alias: {
       "~": fileURLToPath(new URL("./src", import.meta.url)),

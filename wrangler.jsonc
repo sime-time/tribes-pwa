@@ -1,0 +1,9 @@
+{
+  "name": "my-spa",
+  "main": "src/index.js",
+  "compatibility_date": "2025-07-13",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS"
+  }
+}

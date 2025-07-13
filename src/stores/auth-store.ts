@@ -2,9 +2,9 @@ import { ref } from "vue";
 import { defineStore } from "pinia";
 import { createAuthClient } from "better-auth/vue";
 import { emailOTPClient } from "better-auth/client/plugins";
-import { useRouter } from "vue-router";
 import { useToast } from "vue-toastification";
 import type { User } from "better-auth";
+import router from "~/router";
 
 export const authClient = createAuthClient({
   baseURL: import.meta.env.VITE_API_URL,
@@ -13,15 +13,39 @@ export const authClient = createAuthClient({
 
 export const useAuthStore = defineStore("useAuthStore", () => {
   const toast = useToast();
-  const router = useRouter();
 
   const authenticated = ref(false);
   const user = ref<User | null>(null);
   const loading = ref(false);
+  const authStatusChecked = ref(false);
 
   function setAuth(isAuthenticated: boolean, userData: User | null) {
     authenticated.value = isAuthenticated;
     user.value = userData;
+  }
+
+  async function checkAuthStatus() {
+    // this function is required so that when you refresh the page
+    // the app does not forget that the user is authenticated already
+    try {
+      const { data: session } = await authClient.getSession();
+
+      if (session?.user) {
+        // if user object is returned, they are considered authenticated
+        setAuth(true, session.user);
+        console.log("Auth client initialized: User is authenticated.");
+      } else {
+        // no user found, so they are not authenticated
+        setAuth(false, null);
+        console.log("Auth client initialized: User is NOT authenticated.");
+      }
+    } catch (err) {
+      console.error("Error initializing auth client:", err);
+      setAuth(false, null);
+
+    } finally {
+      authStatusChecked.value = true;
+    }
   }
 
   async function signIn(email: string, password: string) {
@@ -152,6 +176,8 @@ export const useAuthStore = defineStore("useAuthStore", () => {
     authenticated,
     user,
     loading,
+    authStatusChecked,
+    checkAuthStatus,
     signIn,
     signUp,
     signOut,

@@ -5,6 +5,7 @@ import Home from "~/views/Home.vue";
 import SignIn from "~/views/(auth)/SignIn.vue";
 import SignUp from "~/views/(auth)/SignUp.vue";
 import VerifyEmail from "~/views/(auth)/VerifyEmail.vue";
+import { authChecker } from "~/utils/auth-checker";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -33,9 +34,12 @@ const router = createRouter({
 });
 
 // navigation guard for authentication
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   const authStore = useAuthStore();
   const { authenticated } = storeToRefs(authStore);
+
+  // run the auth checker before navigating routes
+  await authChecker();
 
   // routes that do NOT require authentication
   const publicRoutes = ["/sign-in", "/sign-up", "/verify-email"];

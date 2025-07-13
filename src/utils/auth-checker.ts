@@ -1,17 +1,11 @@
 import { useAuthStore, authClient } from "~/stores/auth-store";
-import { createPinia } from "pinia";
 
 // this function is required so that when you refresh the page
 // the app does not forget that the user is authenticated already
-
-// initialize Pinia and the Auth store outside of the main function
-// so they can be accessed by the authChecker
-const pinia = createPinia();
-const authStore = useAuthStore(pinia);
-
 export async function authChecker() {
   // check better-auth's session status for an existing token
   try {
+    const authStore = useAuthStore();
     const { data: session } = await authClient.getSession();
 
     if (session?.user) {
@@ -25,9 +19,7 @@ export async function authChecker() {
     }
   } catch (err) {
     console.error("Error initializing auth client:", err);
+    const authStore = useAuthStore();
     authStore.setAuth(false, null);
   }
 }
-
-// Export the initialized pinia instance
-export { pinia };

@@ -9,6 +9,9 @@ import router from "~/router";
 export const authClient = createAuthClient({
   baseURL: import.meta.env.VITE_API_URL,
   plugins: [emailOTPClient()],
+  fetchOptions: {
+    credentials: "include",
+  },
 });
 
 export const useAuthStore = defineStore("useAuthStore", () => {

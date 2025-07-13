@@ -26,6 +26,7 @@
     "@iconify-json/tabler": "^1.2.19",
     "@tsconfig/node22": "^22.0.2",
     "@types/node": "^22.15.32",
+    "@vite-pwa/assets-generator": "^1.0.0",
     "@vitejs/plugin-vue": "^6.0.0",
     "@vue/tsconfig": "^0.7.0",
     "daisyui": "^5.0.46",
@@ -33,6 +34,7 @@
     "typescript": "~5.8.0",
     "unplugin-icons": "^22.1.0",
     "vite": "npm:rolldown-vite@latest",
+    "vite-plugin-pwa": "^1.0.1",
     "vite-plugin-vue-devtools": "^7.7.7",
     "vue-tsc": "^2.2.10"
   }

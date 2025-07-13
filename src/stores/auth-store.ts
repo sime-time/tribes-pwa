@@ -83,11 +83,9 @@ export const useAuthStore = defineStore("useAuthStore", () => {
 
       setAuth(true, signUpAttempt.data.user as User);
       router.push(`/verify-email?address=${signUpAttempt.data.user.email}`);
-
     } catch (error) {
       console.error("Error", error);
       toast.error("Something went wrong...");
-
     } finally {
       loading.value = false;
     }

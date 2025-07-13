@@ -17,7 +17,6 @@ async function handleVerification() {
 }
 
 onMounted(async () => await sendCodeToEmail(email));
-
 </script>
 
 <template>

@@ -2,22 +2,25 @@ import "./assets/styles/main.css";
 import "vue-toastification/dist/index.css";
 
 import { createApp } from "vue";
-import { createPinia } from "pinia";
-
 import App from "./App.vue";
 import router from "./router";
 import Toast from "vue-toastification";
-import { authChecker } from "./plugins/auth-checker";
+import { authChecker, pinia } from "./plugins/auth-checker";
 
-const app = createApp(App);
+async function initialize() {
+  // wait for the auth checker to finish before initializing the app
+  await authChecker();
 
-app.use(Toast, {
-  position: "top-center",
-  timeout: 3000,
-});
+  const app = createApp(App);
 
-app.use(createPinia());
-app.use(router);
-app.use(authChecker);
+  app.use(Toast, {
+    position: "top-center",
+    timeout: 3000,
+  });
+  app.use(pinia);
+  app.use(router);
 
-app.mount("#app");
+  app.mount("#app");
+}
+
+initialize();

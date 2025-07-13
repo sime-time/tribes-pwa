@@ -4,7 +4,6 @@ import { useAuthStore } from "~/stores/auth-store";
 
 const authStore = useAuthStore();
 const { user } = authStore;
-
 </script>
 
 <template>

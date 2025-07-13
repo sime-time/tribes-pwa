@@ -17,7 +17,6 @@ export const useAuthStore = defineStore("useAuthStore", () => {
   const authenticated = ref(false);
   const user = ref<User | null>(null);
   const loading = ref(false);
-  const authStatusChecked = ref(false);
 
   function setAuth(isAuthenticated: boolean, userData: User | null) {
     authenticated.value = isAuthenticated;
@@ -25,26 +24,18 @@ export const useAuthStore = defineStore("useAuthStore", () => {
   }
 
   async function checkAuthStatus() {
-    // this function is required so that when you refresh the page
-    // the app does not forget that the user is authenticated already
     try {
       const { data: session } = await authClient.getSession();
-
       if (session?.user) {
-        // if user object is returned, they are considered authenticated
         setAuth(true, session.user);
-        console.log("Auth client initialized: User is authenticated.");
+        console.log("User is authenticated")
       } else {
-        // no user found, so they are not authenticated
         setAuth(false, null);
-        console.log("Auth client initialized: User is NOT authenticated.");
+        console.log("User is not authenticated")
       }
     } catch (err) {
       console.error("Error initializing auth client:", err);
       setAuth(false, null);
-
-    } finally {
-      authStatusChecked.value = true;
     }
   }
 
@@ -63,7 +54,7 @@ export const useAuthStore = defineStore("useAuthStore", () => {
 
       if (signInAttempt.error) {
         console.error("Sign-in failed:", signInAttempt.error);
-        return toast.error(signInAttempt.error.message);
+        return toast.error(signInAttempt.error.message || "Internal Server Error");
       }
 
       // if email is still not verified, send verification email again
@@ -102,7 +93,7 @@ export const useAuthStore = defineStore("useAuthStore", () => {
 
       if (signUpAttempt.error) {
         console.error("Sign-up failed:", signUpAttempt.error);
-        return toast.error(signUpAttempt.error.message);
+        return toast.error(signUpAttempt.error.message || "Internal Server Error");
       }
 
       setAuth(true, signUpAttempt.data.user as User);
@@ -122,7 +113,7 @@ export const useAuthStore = defineStore("useAuthStore", () => {
     const signOutAttempt = await authClient.signOut();
     if (signOutAttempt.error) {
       console.error("Sign-out failed:", signOutAttempt.error);
-      return toast.error(signOutAttempt.error.message);
+      return toast.error(signOutAttempt.error.message || "Internal Server Error");
     }
     setAuth(false, null);
 
@@ -176,7 +167,6 @@ export const useAuthStore = defineStore("useAuthStore", () => {
     authenticated,
     user,
     loading,
-    authStatusChecked,
     checkAuthStatus,
     signIn,
     signUp,

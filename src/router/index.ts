@@ -34,14 +34,8 @@ const router = createRouter({
 });
 
 // navigation guard for authentication
-router.beforeEach(async (to, from, next) => {
+router.beforeEach((to, from, next) => {
   const authStore = useAuthStore();
-
-  // check the auth status before proceeding
-  if (!authStore.authStatusChecked) {
-    await authStore.checkAuthStatus();
-  }
-
   const { authenticated } = storeToRefs(authStore);
 
   // routes that do NOT require authentication
@@ -59,11 +53,6 @@ router.beforeEach(async (to, from, next) => {
   ) {
     return next("/");
   }
-
-  // You can add more complex logic here, like role-based checks:
-  // if (to.meta.requiresAdmin && (!authStore.isAuthenticated || !authStore.user?.isAdmin)) {
-  //   return next('/'); // Or a specific forbidden page
-  // }
 
   // otherwise, continue to route as normal
   return next();

@@ -23,7 +23,6 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.1.1",
-    "@cloudflare/vite-plugin": "^1.9.4",
     "@iconify-json/tabler": "^1.2.19",
     "@tsconfig/node22": "^22.0.2",
     "@types/node": "^22.15.32",
@@ -35,7 +34,6 @@
     "unplugin-icons": "^22.1.0",
     "vite": "npm:rolldown-vite@latest",
     "vite-plugin-vue-devtools": "^7.7.7",
-    "vue-tsc": "^2.2.10",
-    "wrangler": "^4.24.3"
+    "vue-tsc": "^2.2.10"
   }
 }

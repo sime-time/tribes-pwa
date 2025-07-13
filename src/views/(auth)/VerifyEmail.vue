@@ -10,10 +10,10 @@ const { verifyEmailCode, sendCodeToEmail } = authStore;
 
 const route = useRoute();
 const email = route.query.address as string;
-const code = ref("");
+const code = ref();
 
 async function handleVerification() {
-  await verifyEmailCode(email, code.value);
+  verifyEmailCode(email, code.value);
 }
 
 onMounted(async () => await sendCodeToEmail(email));
@@ -33,8 +33,7 @@ onMounted(async () => await sendCodeToEmail(email));
     <form class="fieldset space-y-3" @submit.prevent="handleVerification">
 
       <!-- VERIFICATION CODE INPUT -->
-      <input v-model="code" type="number" class="input input-lg" placeholder="Enter verification code"
-        inputmode="numeric" />
+      <input v-model="code" type="number" class="input input-lg text-center" placeholder="XXXXXX" inputmode="numeric" />
 
       <!-- VERIFY BUTTON -->
       <button type="submit" class="btn btn-lg btn-primary" :disabled="loading">

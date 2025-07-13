@@ -4,9 +4,10 @@ import { createAuthClient } from "better-auth/vue";
 import { emailOTPClient } from "better-auth/client/plugins";
 import { useRouter } from "vue-router";
 import { useToast } from "vue-toastification";
+import type { User } from "better-auth";
 
 export const authClient = createAuthClient({
-  baseURL: import.meta.env.API_URL,
+  baseURL: import.meta.env.VITE_API_URL,
   plugins: [emailOTPClient()],
 });
 
@@ -15,10 +16,10 @@ export const useAuthStore = defineStore("useAuthStore", () => {
   const router = useRouter();
 
   const authenticated = ref(false);
-  const user = ref(null);
+  const user = ref<User | null>(null);
   const loading = ref(false);
 
-  function setAuth(isAuthenticated: boolean, userData: any) {
+  function setAuth(isAuthenticated: boolean, userData: User | null) {
     authenticated.value = isAuthenticated;
     user.value = userData;
   }
@@ -43,7 +44,7 @@ export const useAuthStore = defineStore("useAuthStore", () => {
 
       // if email is still not verified, send verification email again
       if (signInAttempt.data.user.emailVerified) {
-        setAuth(true, signInAttempt.data.user);
+        setAuth(true, signInAttempt.data.user as User);
         router.push("/");
       } else {
         router.push(`/verify-email?address=${signInAttempt.data.user.email}`);
@@ -80,7 +81,7 @@ export const useAuthStore = defineStore("useAuthStore", () => {
         return toast.error(signUpAttempt.error.message);
       }
 
-      setAuth(true, signUpAttempt.data.user);
+      setAuth(true, signUpAttempt.data.user as User);
       router.push(`/verify-email?address=${signUpAttempt.data.user.email}`);
 
     } catch (error) {
@@ -94,7 +95,7 @@ export const useAuthStore = defineStore("useAuthStore", () => {
 
   async function signOut() {
     loading.value = true;
-    console.log("signing out...");
+    console.log("Signing out...");
 
     const signOutAttempt = await authClient.signOut();
     if (signOutAttempt.error) {
@@ -124,13 +125,13 @@ export const useAuthStore = defineStore("useAuthStore", () => {
     }
   }
 
-  async function verifyEmailCode(email: string, code: string) {
+  async function verifyEmailCode(email: string, code: number) {
     loading.value = true;
     try {
       // use the code input to attempt verification
       const verifyEmailAttempt = await authClient.emailOtp.verifyEmail({
         email: email,
-        otp: code,
+        otp: code.toString(),
       });
 
       if (verifyEmailAttempt.error) {
@@ -139,7 +140,7 @@ export const useAuthStore = defineStore("useAuthStore", () => {
 
       console.log("email verified!");
 
-      setAuth(true, verifyEmailAttempt.data.user);
+      setAuth(true, verifyEmailAttempt.data.user as User);
       router.push("/");
     } catch (error) {
       console.error("Error", error);

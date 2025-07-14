@@ -12,7 +12,7 @@
   --color-base-200: oklch(22.5% 0.013 260);
   --color-base-300: oklch(19.5% 0.011 260);
   --color-base-content: oklch(96% 0.03 255);
-  --color-primary: oklch(58% 0.26 27);
+  --color-primary: oklch(50% 0.213 27.518);
   --color-primary-content: oklch(97% 0.02 260);
   --color-secondary: oklch(65% 0.19 145);
   --color-secondary-content: oklch(16% 0.03 145);
@@ -27,7 +27,7 @@
   --color-warning: oklch(83% 0.2 85);
   --color-warning-content: oklch(39% 0.11 65);
   --color-error: oklch(72% 0.21 20);
-  --color-error-content: oklch(26% 0.10 15);
+  --color-error-content: oklch(26% 0.1 15);
   --radius-selector: 0.5rem;
   --radius-field: 0.5rem;
   --radius-box: 0.5rem;

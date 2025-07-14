@@ -20,9 +20,9 @@ export default defineConfig({
       },
       includeAssets: ["favicon.ico", "apple-touch-icon.png", "mask-icon.svg", "favicon.svg"],
       manifest: {
-        name: 'Tribes App',
-        short_name: 'Tribes',
-        description: 'Track goal progression with your tribe',
+        name: 'Habitribe',
+        short_name: 'Habitribe',
+        description: 'Track habits & compete with your friends',
         theme_color: '#1d232a',
         background_color: '#1d232a',
         icons: [

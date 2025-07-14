@@ -8,8 +8,9 @@ const { user } = authStore;
 </script>
 
 <template>
-  <main class="container flex flex-col items-center justify-center gap-10 h-[50vh]">
-    <h1 class="text-4xl font-bold">Welcome, <span class="text-primary">{{ user?.name }}</span></h1>
+  <main class="container flex flex-col items-center justify-center gap-8 h-screen">
+    <h1 class="text-2xl font-semibold text-primary-content"> No Habits yet</h1>
+    <p class="opacity-80">Tap "+" to add your first habit</p>
 
     <div>
       <SignOutButton />

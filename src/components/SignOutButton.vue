@@ -11,7 +11,7 @@ async function handleSignOut() {
 </script>
 
 <template>
-  <button class="btn btn-accent btn-lg" @click="handleSignOut">
+  <button class="btn btn-primary btn-lg" @click="handleSignOut">
     <span v-if="loading">Signing Out...</span>
     <span v-else>Sign Out</span>
   </button>

@@ -23,8 +23,8 @@ export default defineConfig({
         name: 'Habitribe',
         short_name: 'Habitribe',
         description: 'Track habits & compete with your friends',
-        theme_color: '#1f232a',
-        background_color: '#1f232a',
+        theme_color: '#242424',
+        background_color: '#242424',
         icons: [
           {
             src: 'pwa-64x64.png',

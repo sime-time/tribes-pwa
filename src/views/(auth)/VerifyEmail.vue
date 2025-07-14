@@ -22,10 +22,10 @@ onMounted(async () => await sendCodeToEmail(email));
 <template>
   <main class="container flex flex-col items-center justify-center h-screen px-5">
 
-    <h1 class="text-primary-content text-4xl font-semibold">Verify Your Email</h1>
-    <p class="text-center mb-6 mt-2 text-primary-content">
+    <h1 class="text-neutral-content text-4xl font-semibold">Verify Your Email</h1>
+    <p class="text-center mb-6 mt-2">
       We've sent a verification code to
-      <span class="text-accent">{{ email }}</span>
+      <span class="text-secondary">{{ email }}</span>
     </p>
 
     <!-- FORM CONTAINER -->
@@ -41,9 +41,8 @@ onMounted(async () => await sendCodeToEmail(email));
       </button>
 
       <!-- RESEND EMAIL -->
-      <button type="button" class="text-primary-content text-center text-sm"
-        @click="() => sendCodeToEmail(email, true)">
-        <p>Didn't get an email? <span class="link link-accent">Resend code to email</span></p>
+      <button type="button" class="text-center text-sm" @click="() => sendCodeToEmail(email, true)">
+        <p>Didn't get an email? <span class="link link-primary">Resend code to email</span></p>
       </button>
     </form>
   </main>

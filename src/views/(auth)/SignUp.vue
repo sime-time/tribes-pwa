@@ -26,7 +26,7 @@ async function handleSignUp() {
 
 <template>
   <main class="container flex flex-col justify-center h-screen ">
-    <h1 class="text-primary-content text-4xl font-semibold text-center mb-6">Create Account</h1>
+    <h1 class="text-neutral-content text-4xl font-semibold text-center mb-6">Create Account</h1>
 
     <!-- FORM CONTAINER -->
     <form class="fieldset space-y-3 mx-[1rem]" @submit.prevent="handleSignUp">
@@ -49,8 +49,8 @@ async function handleSignUp() {
       </button>
 
       <!-- SIGN IN LINK -->
-      <RouterLink to="/sign-in" class="text-primary-content text-center text-sm">
-        <p>Already have an account? <span class="link link-accent">Sign in</span></p>
+      <RouterLink to="/sign-in" class="text-center text-sm">
+        <p>Already have an account? <span class="link link-primary">Sign in</span></p>
       </RouterLink>
     </form>
 

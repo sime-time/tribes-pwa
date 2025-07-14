@@ -2,7 +2,7 @@
 import { RouterLink } from "vue-router";
 import IconChecklist from "~icons/solar/checklist-minimalistic-outline"
 import IconGroup from "~icons/solar/users-group-rounded-linear"
-import IconAddCircle from "~icons/solar/add-circle-bold"
+import IconChart from "~icons/tabler/chart-bar-popular"
 
 defineProps<{
   tab: string;
@@ -16,9 +16,10 @@ defineProps<{
       <span class="dock-label">Habits</span>
     </router-link>
 
-    <button>
-      <icon-add-circle style="font-size: 3rem; color: var(--color-primary);" />
-    </button>
+    <router-link to="/stats" :class="tab === 'stats' ? 'dock-active' : ''">
+      <icon-chart style="font-size: 1.2rem" />
+      <span class="dock-label">Stats</span>
+    </router-link>
 
     <router-link to="/tribe" :class="tab === 'tribe' ? 'dock-active' : ''">
       <icon-group style="font-size: 1.2rem" />

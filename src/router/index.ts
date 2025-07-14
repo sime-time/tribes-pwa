@@ -6,6 +6,7 @@ import SignIn from "~/views/(auth)/SignIn.vue";
 import SignUp from "~/views/(auth)/SignUp.vue";
 import VerifyEmail from "~/views/(auth)/VerifyEmail.vue";
 import Tribe from "~/views/Tribe.vue";
+import Stats from "~/views/Stats.vue";
 
 
 const router = createRouter({
@@ -35,6 +36,11 @@ const router = createRouter({
       path: "/tribe",
       name: "tribe",
       component: Tribe,
+    },
+    {
+      path: "/stats",
+      name: "stats",
+      component: Stats,
     },
   ],
 });

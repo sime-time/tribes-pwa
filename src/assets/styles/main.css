@@ -1,40 +1,50 @@
 @import "tailwindcss";
 @plugin "daisyui" {
-  themes: "adonis";
+  themes: "ritual";
 }
 
-
 @plugin "daisyui/theme" {
-  name: "adonis";
+  name: "ritual";
   default: true;
   prefersdark: false;
   color-scheme: "dark";
-  --color-base-100: oklch(25.5% 0.015 260);
-  --color-base-200: oklch(37% 0.034 259.733);
-  --color-base-300: oklch(19.5% 0.011 260);
-  --color-base-content: oklch(96% 0.03 255);
-  --color-primary: oklch(70% 0.14 182.503);
-  --color-primary-content: oklch(27% 0.046 192.524);
-  --color-secondary: oklch(62% 0.214 259.815);
-  --color-secondary-content: oklch(97% 0.014 254.604);
-  --color-accent: oklch(62% 0.265 303.9);
-  --color-accent-content: oklch(97% 0.014 308.299);
-  --color-neutral: oklch(15% 0.004 265);
-  --color-neutral-content: oklch(92% 0.005 270);
-  --color-info: oklch(75% 0.16 245);
-  --color-info-content: oklch(25% 0.07 250);
-  --color-success: oklch(84% 0.238 128.85);
-  --color-success-content: oklch(27% 0.072 132.109);
-  --color-warning: oklch(83% 0.2 85);
-  --color-warning-content: oklch(39% 0.11 65);
-  --color-error: oklch(71% 0.194 13.428);
-  --color-error-content: oklch(0% 0 0);
+  --color-base-100: oklch(26% 0 0);
+  --color-base-200: oklch(14% 0 0);
+  --color-base-300: oklch(20% 0 0);
+  --color-base-content: oklch(98% 0.003 247.858);
+  --color-primary: oklch(68% 0.23 27);
+  --color-primary-content: oklch(12% 0.042 264.695);
+  --color-secondary: oklch(85% 0.138 181.071);
+  --color-secondary-content: oklch(27% 0.046 192.524);
+  --color-accent: oklch(76% 0.188 70.08);
+  --color-accent-content: oklch(27% 0.077 45.635);
+  --color-neutral: oklch(12% 0.042 264.695);
+  --color-neutral-content: oklch(98% 0.003 247.858);
+  --color-info: oklch(78% 0.15 240);
+  --color-info-content: oklch(22% 0.04 240);
+  --color-success: oklch(79% 0.209 151.711);
+  --color-success-content: oklch(25% 0.05 150);
+  --color-warning: oklch(94% 0.129 101.54);
+  --color-warning-content: oklch(28% 0.066 53.813);
+  --color-error: oklch(57% 0.245 27.325);
+  --color-error-content: oklch(97% 0.013 17.38);
   --radius-selector: 0.5rem;
   --radius-field: 0.5rem;
-  --radius-box: 0.5rem;
+  --radius-box: 1rem;
   --size-selector: 0.25rem;
   --size-field: 0.25rem;
   --border: 1px;
   --depth: 1;
   --noise: 0;
+}
+
+button {
+  touch-action: manipulation;
+  transition-property: opacity translate scale;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  transition-duration: 0.2s;
+}
+button:active {
+  opacity: 0.8;
+  transform: translateY(0.5px) scale(0.98);
 }

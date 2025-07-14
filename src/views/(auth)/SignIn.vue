@@ -24,7 +24,7 @@ async function handleSignIn() {
 
 <template>
   <main class="container flex flex-col justify-center h-screen ">
-    <h1 class="text-primary-content text-4xl font-semibold text-center mb-6">Welcome Back</h1>
+    <h1 class="text-neutral-content text-4xl font-semibold text-center mb-6">Welcome Back</h1>
 
     <!-- FORM CONTAINER -->
     <form class="fieldset space-y-3 mx-[1rem]" @submit.prevent="handleSignIn">
@@ -46,8 +46,8 @@ async function handleSignIn() {
       </button>
 
       <!-- SIGN UP LINK -->
-      <RouterLink to="/sign-up" class="text-primary-content text-center text-sm">
-        <p>Don't have an account? <span class="link link-accent">Sign up</span></p>
+      <RouterLink to="/sign-up" class="text-center text-sm">
+        <p>Don't have an account? <span class="link link-primary">Sign up</span></p>
       </RouterLink>
     </form>
 

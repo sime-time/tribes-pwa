@@ -1,15 +1,20 @@
 <script setup lang="ts">
+import { RouterLink } from "vue-router";
 import IconChecklist from "~icons/solar/checklist-minimalistic-outline"
 import IconGroup from "~icons/solar/users-group-rounded-linear"
 import IconAddCircle from "~icons/solar/add-circle-bold"
+
+defineProps<{
+  tab: string;
+}>();
 </script>
 
 <template>
   <div class="dock bg-neutral text-neutral-content">
-    <button class="dock-active">
+    <router-link to="/" :class="tab === 'habits' ? 'dock-active' : ''">
       <icon-checklist style="font-size: 1.2rem" />
       <span class="dock-label">Habits</span>
-    </button>
+    </router-link>
 
     <button>
       <div class="bg-neutral-content rounded-full p-0">
@@ -17,9 +22,9 @@ import IconAddCircle from "~icons/solar/add-circle-bold"
       </div>
     </button>
 
-    <button>
+    <router-link to="/tribe" :class="tab === 'tribe' ? 'dock-active' : ''">
       <icon-group style="font-size: 1.2rem" />
       <span class="dock-label">Tribe</span>
-    </button>
+    </router-link>
   </div>
 </template>

@@ -23,8 +23,8 @@ export default defineConfig({
         name: 'Tribes App',
         short_name: 'Tribes',
         description: 'Track goal progression with your tribe',
-        theme_color: '#FFFFFF',
-        background_color: '#FFFFFF',
+        theme_color: '#1d232a',
+        background_color: '#1d232a',
         icons: [
           {
             src: 'pwa-64x64.png',

@@ -26,7 +26,7 @@ async function handleSignUp() {
 
 <template>
   <main class="container flex flex-col justify-center h-screen ">
-    <h1 class="text-primary text-4xl font-bold text-center mb-6">Create Account</h1>
+    <h1 class="text-primary-content text-4xl font-semibold text-center mb-6">Create Account</h1>
 
     <!-- FORM CONTAINER -->
     <form class="fieldset space-y-3 mx-[1rem]" @submit.prevent="handleSignUp">

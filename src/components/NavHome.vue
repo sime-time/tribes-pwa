@@ -1,0 +1,59 @@
+<script setup lang="ts">
+import IconSettings from "~icons/tabler/settings";
+import IconPlus from "~icons/tabler/plus"
+import IconLogout from "~icons/tabler/logout-2";
+import IconUser from "~icons/solar/user-circle-outline";
+import IconSort from "~icons/tabler/arrows-sort"
+import { useAuthStore } from "~/stores/auth-store";
+
+const authStore = useAuthStore();
+
+async function handleSignOut() {
+  await authStore.signOut();
+}
+</script>
+
+<template>
+  <div class="navbar bg-base-300">
+
+    <div class="navbar-start">
+      <div class="dropdown">
+        <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
+          <icon-settings style="font-size: 1.5em" />
+        </div>
+        <ul tabindex="0"
+          class="menu menu-lg dropdown-content bg-base-200 rounded-box z-1 mt-3 w-52 p-2 shadow space-y-2">
+          <li>
+            <router-link to="/profile" class="bg-base-100">
+              <icon-user />
+              Profile
+            </router-link>
+          </li>
+          <li>
+            <router-link to="/reorder-habits" class="bg-base-100">
+              <icon-sort />
+              Reorder Habits
+            </router-link>
+          </li>
+          <li>
+            <button class="bg-primary flex text-neutral-content" @click="handleSignOut">
+              <icon-logout />
+              Sign out
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="navbar-center">
+      <a class="text-xl font-semibold">June 14</a>
+    </div>
+
+    <div class="navbar-end">
+      <button class="btn bg-base-100 btn-circle text-primary">
+        <icon-plus style="font-size: 1.4em" />
+      </button>
+    </div>
+
+  </div>
+</template>

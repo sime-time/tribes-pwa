@@ -10,20 +10,20 @@ defineProps<{
 </script>
 
 <template>
-  <div class="dock bg-neutral text-neutral-content">
-    <router-link to="/" :class="tab === 'habits' ? 'dock-active' : ''">
+  <nav class="dock bg-base-200">
+    <router-link to="/" :class="tab === 'habits' ? 'dock-active text-primary' : ''">
       <icon-checklist style="font-size: 1.2rem" />
       <span class="dock-label">Habits</span>
     </router-link>
 
-    <router-link to="/stats" :class="tab === 'stats' ? 'dock-active' : ''">
+    <router-link to="/stats" :class="tab === 'stats' ? 'dock-active text-primary' : ''">
       <icon-chart style="font-size: 1.2rem" />
       <span class="dock-label">Stats</span>
     </router-link>
 
-    <router-link to="/tribe" :class="tab === 'tribe' ? 'dock-active' : ''">
+    <router-link to="/tribe" :class="tab === 'tribe' ? 'dock-active text-primary' : ''">
       <icon-group style="font-size: 1.2rem" />
       <span class="dock-label">Tribe</span>
     </router-link>
-  </div>
+  </nav>
 </template>

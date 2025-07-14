@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import SignOutButton from "~/components/SignOutButton.vue";
+import TabDock from "~/components/TabDock.vue";
 import { useAuthStore } from "~/stores/auth-store";
 
 const authStore = useAuthStore();
@@ -13,5 +14,6 @@ const { user } = authStore;
     <div>
       <SignOutButton />
     </div>
+    <TabDock />
   </main>
 </template>

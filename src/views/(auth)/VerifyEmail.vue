@@ -22,7 +22,7 @@ onMounted(async () => await sendCodeToEmail(email));
 <template>
   <main class="container flex flex-col items-center justify-center h-screen px-5">
 
-    <h1 class="text-4xl text-primary font-bold">Verify Your Email</h1>
+    <h1 class="text-primary-content text-4xl font-semibold">Verify Your Email</h1>
     <p class="text-center mb-6 mt-2 text-primary-content">
       We've sent a verification code to
       <span class="text-accent">{{ email }}</span>

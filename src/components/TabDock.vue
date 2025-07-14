@@ -17,9 +17,7 @@ defineProps<{
     </router-link>
 
     <button>
-      <div class="bg-neutral-content rounded-full p-0">
-        <icon-add-circle style="font-size: 3rem; color: var(--color-primary);" />
-      </div>
+      <icon-add-circle style="font-size: 3rem; color: var(--color-primary);" />
     </button>
 
     <router-link to="/tribe" :class="tab === 'tribe' ? 'dock-active' : ''">

@@ -13,7 +13,7 @@
   --color-base-300: oklch(14% 0 0);
   --color-base-content: oklch(98% 0.003 247.858);
   --color-primary: oklch(68% 0.23 27);
-  --color-primary-content: oklch(98% 0.003 247.858);
+  --color-primary-content: oklch(12% 0.042 264.695);
   --color-secondary: oklch(85% 0.138 181.071);
   --color-secondary-content: oklch(27% 0.046 192.524);
   --color-accent: oklch(76% 0.188 70.08);
@@ -39,7 +39,7 @@
 }
 
 html {
-  background-color: var(--color-base-300)
+  background-color: var(--color-base-300);
 }
 
 button {

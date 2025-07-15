@@ -28,10 +28,10 @@ export const useAuthStore = defineStore("useAuthStore", () => {
       const { data: session } = await authClient.getSession();
       if (session?.user) {
         setAuth(true, session.user);
-        console.log("User is authenticated")
+        console.log("User is authenticated");
       } else {
         setAuth(false, null);
-        console.log("User is not authenticated")
+        console.log("User is not authenticated");
       }
     } catch (err) {
       console.error("Error initializing auth client:", err);
@@ -54,7 +54,9 @@ export const useAuthStore = defineStore("useAuthStore", () => {
 
       if (signInAttempt.error) {
         console.error("Sign-in failed:", signInAttempt.error);
-        return toast.error(signInAttempt.error.message || "Internal Server Error");
+        return toast.error(
+          signInAttempt.error.message || "Internal Server Error",
+        );
       }
 
       // if email is still not verified, send verification email again
@@ -93,7 +95,9 @@ export const useAuthStore = defineStore("useAuthStore", () => {
 
       if (signUpAttempt.error) {
         console.error("Sign-up failed:", signUpAttempt.error);
-        return toast.error(signUpAttempt.error.message || "Internal Server Error");
+        return toast.error(
+          signUpAttempt.error.message || "Internal Server Error",
+        );
       }
 
       setAuth(true, signUpAttempt.data.user as User);
@@ -113,7 +117,9 @@ export const useAuthStore = defineStore("useAuthStore", () => {
     const signOutAttempt = await authClient.signOut();
     if (signOutAttempt.error) {
       console.error("Sign-out failed:", signOutAttempt.error);
-      return toast.error(signOutAttempt.error.message || "Internal Server Error");
+      return toast.error(
+        signOutAttempt.error.message || "Internal Server Error",
+      );
     }
     setAuth(false, null);
 

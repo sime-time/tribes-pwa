@@ -1,21 +1,20 @@
 import { createRouter, createWebHistory } from "vue-router";
 import { useAuthStore } from "~/stores/auth-store";
 import { storeToRefs } from "pinia";
-import Home from "~/views/Home.vue";
+import Habits from "~/views/Habits.vue";
 import SignIn from "~/views/(auth)/SignIn.vue";
 import SignUp from "~/views/(auth)/SignUp.vue";
 import VerifyEmail from "~/views/(auth)/VerifyEmail.vue";
 import Tribe from "~/views/Tribe.vue";
 import Stats from "~/views/Stats.vue";
 
-
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: "/",
-      name: "home",
-      component: Home,
+      name: "habits",
+      component: Habits,
     },
     {
       path: "/sign-in",

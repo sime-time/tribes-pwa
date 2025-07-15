@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import IconSettings from "~icons/tabler/settings";
-import IconPlus from "~icons/tabler/plus"
+import IconPlus from "~icons/tabler/plus";
 import IconLogout from "~icons/tabler/logout-2";
 import IconUser from "~icons/solar/user-circle-outline";
-import IconSort from "~icons/tabler/arrows-sort"
+import IconSort from "~icons/tabler/arrows-sort";
+import IconAdjust from "~icons/tabler/adjustments-horizontal"
 import { useAuthStore } from "~/stores/auth-store";
 
 const authStore = useAuthStore();
@@ -23,6 +24,7 @@ async function handleSignOut() {
         </div>
         <ul tabindex="0"
           class="menu menu-lg dropdown-content bg-base-200 rounded-box z-1 mt-3 w-52 p-2 shadow space-y-2">
+
           <li>
             <router-link to="/profile" class="bg-base-100">
               <icon-user />
@@ -33,6 +35,12 @@ async function handleSignOut() {
             <router-link to="/reorder-habits" class="bg-base-100">
               <icon-sort />
               Reorder Habits
+            </router-link>
+          </li>
+          <li>
+            <router-link to="/profile" class="bg-base-100">
+              <icon-adjust />
+              Settings
             </router-link>
           </li>
           <li>

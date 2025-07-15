@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { RouterLink } from "vue-router";
-import IconChecklist from "~icons/solar/checklist-minimalistic-outline"
-import IconGroup from "~icons/solar/users-group-rounded-linear"
-import IconChart from "~icons/tabler/chart-bar-popular"
+import IconChecklist from "~icons/solar/checklist-minimalistic-outline";
+import IconGroup from "~icons/solar/users-group-rounded-linear";
+import IconChart from "~icons/tabler/chart-bar-popular";
 
 defineProps<{
   tab: string;

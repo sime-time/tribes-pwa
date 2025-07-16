@@ -99,7 +99,6 @@ export const useAuthStore = defineStore("useAuthStore", () => {
           signUpAttempt.error.message || "Internal Server Error",
         );
       }
-
       setAuth(true, signUpAttempt.data.user as User);
       router.push(`/verify-email?address=${signUpAttempt.data.user.email}`);
     } catch (error) {
@@ -115,6 +114,7 @@ export const useAuthStore = defineStore("useAuthStore", () => {
     console.log("Signing out...");
 
     const signOutAttempt = await authClient.signOut();
+
     if (signOutAttempt.error) {
       console.error("Sign-out failed:", signOutAttempt.error);
       return toast.error(
@@ -158,9 +158,9 @@ export const useAuthStore = defineStore("useAuthStore", () => {
       }
 
       console.log("email verified!");
-
       setAuth(true, verifyEmailAttempt.data.user as User);
       router.push("/");
+
     } catch (error) {
       console.error("Error", error);
       toast.error("Something went wrong...");

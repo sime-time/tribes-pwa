@@ -3,6 +3,7 @@ import { ref } from "vue";
 import { useAuthStore } from "~/stores/auth-store";
 import { storeToRefs } from "pinia";
 import { RouterLink } from "vue-router";
+import { haptic } from "~/plugins/haptic";
 import IconEye from "~icons/tabler/eye";
 import IconEyeOff from "~icons/tabler/eye-off";
 
@@ -20,13 +21,14 @@ function toggleShowPassword() {
 }
 
 async function handleSignUp() {
+  haptic.confirm();
   signUp(name.value, email.value, password.value);
 }
 </script>
 
 <template>
-  <main class="container flex flex-col justify-center h-screen ">
-    <h1 class="text-neutral-content text-4xl font-semibold text-center mb-6">Create Account</h1>
+  <main class="flex flex-col justify-center">
+    <h1 class="text-neutral-content text-4xl font-semibold text-center mb-6 mt-32">Create Account</h1>
 
     <!-- FORM CONTAINER -->
     <form class="fieldset space-y-3 mx-[1rem]" @submit.prevent="handleSignUp">

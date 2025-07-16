@@ -7,7 +7,7 @@ import {
   DoughnutController,
   CategoryScale,
   LinearScale,
-} from "chart.js"
+} from "chart.js";
 
 // register all the components needed in this application
 ChartJS.register(

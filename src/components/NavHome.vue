@@ -6,10 +6,12 @@ import IconUser from "~icons/solar/user-circle-outline";
 import IconSort from "~icons/tabler/arrows-sort";
 import IconAdjust from "~icons/tabler/adjustments-horizontal";
 import { useAuthStore } from "~/stores/auth-store";
+import { haptic } from "~/plugins/haptic";
 
 const authStore = useAuthStore();
 
 async function handleSignOut() {
+  haptic.confirm();
   await authStore.signOut();
 }
 </script>
@@ -19,7 +21,7 @@ async function handleSignOut() {
 
     <div class="navbar-start">
       <div class="dropdown">
-        <button tabindex="0" role="button" class="btn btn-ghost btn-circle">
+        <button tabindex="0" role="button" class="btn btn-ghost btn-circle" @click="haptic">
           <icon-settings style="font-size: 1.5em" />
         </button>
         <ul tabindex="0"

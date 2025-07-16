@@ -15,7 +15,7 @@ function haptic() {
   // Android/Chrome
   if ("vibrate" in navigator) {
     try {
-      navigator.vibrate(10);
+      navigator.vibrate(30);
     } catch {
       // empty catch block to prevent throwing an error if
       // vibrate is disabled by user settings
@@ -50,8 +50,8 @@ haptic.confirm = () => {
     } catch { }
     return;
   }
-  haptic();
-  setTimeout(() => haptic(), 120);
+  haptic(); // immediate haptic
+  setTimeout(() => haptic(), 120); // haptic triggers after 120ms
 };
 
 haptic.error = () => {
@@ -60,6 +60,7 @@ haptic.error = () => {
       // [vibrate, pause, vibrate, pause, vibrate] in ms
       navigator.vibrate([10, 110, 10, 110, 10]);
     } catch { }
+    return;
   }
   haptic(); // immediate haptic
   setTimeout(() => haptic(), 120); // haptic after 120ms

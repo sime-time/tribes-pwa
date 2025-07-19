@@ -21,7 +21,7 @@ async function handleSignOut() {
 
     <div class="navbar-start">
       <div class="dropdown">
-        <button tabindex="0" role="button" class="btn btn-ghost btn-circle" @click="haptic">
+        <button tabindex="0" role="button" class="btn btn-ghost btn-circle" @click="() => haptic()">
           <icon-settings style="font-size: 1.5em" />
         </button>
         <ul tabindex="0"
@@ -40,7 +40,7 @@ async function handleSignOut() {
             </router-link>
           </li>
           <li>
-            <router-link to="/profile" class="bg-base-100">
+            <router-link to="/settings" class="bg-base-100">
               <icon-adjust />
               Settings
             </router-link>
@@ -60,7 +60,7 @@ async function handleSignOut() {
     </div>
 
     <div class="navbar-end">
-      <button class="btn bg-base-100 btn-circle text-primary">
+      <button class="btn bg-base-100 btn-circle text-primary" @click="() => haptic()">
         <icon-plus style="font-size: 1.4em" />
       </button>
     </div>

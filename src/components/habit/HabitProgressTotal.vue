@@ -40,6 +40,9 @@ const options = ref<ChartOptions<"doughnut">>({
     legend: {
       display: false, // Hide the default legend
     },
+    tooltip: {
+      enabled: false,
+    }
   },
 });
 </script>

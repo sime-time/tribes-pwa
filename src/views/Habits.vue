@@ -1,18 +1,18 @@
 <script setup lang="ts">
 import TabDock from "~/components/TabDock.vue";
-import NavHome from "~/components/NavHome.vue";
+import HabitNavBar from "~/components/habit/HabitNavBar.vue";
 import HabitCard from "~/components/habit/HabitCard.vue";
-import TotalHabitProgress from "~/components/habit/TotalHabitProgress.vue";
+import HabitProgressTotal from "~/components/habit/HabitProgressTotal.vue";
 </script>
 
 <template>
-  <NavHome />
-  <main class="flex flex-col items-center gap-8 mt-16 px-[1rem]">
-    <TotalHabitProgress :percent="62" />
+  <HabitNavBar />
+  <main class="flex flex-col items-center gap-8 mt-16 mb-24 px-[1rem]">
+    <HabitProgressTotal :percent="62" />
     <div class="grid grid-cols-1 gap-4 w-full">
-      <HabitCard />
-      <HabitCard />
-      <HabitCard />
+      <HabitCard name="meditate" :value="20" unit="min" />
+      <HabitCard name="workout" :value="1" unit="count" />
+      <HabitCard name="reduce screentime" :value="30" unit="min" />
     </div>
   </main>
   <TabDock tab="habits" />

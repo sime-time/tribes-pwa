@@ -1,63 +1,87 @@
 <script setup lang="ts">
+import { ref, reactive, computed, watch } from "vue";
 import CreateHabitNavBar from "~/components/create/CreateHabitNavBar.vue";
 import CreateHabitIcons from "~/components/create/CreateHabitIcons.vue";
+
+const reminderEnabled = ref(false);
+const reminderTime = ref(null);
+
+const week = reactive({
+  sunday: { value: 0, enabled: true, label: "S" },
+  monday: { value: 1, enabled: true, label: "M" },
+  tuesday: { value: 2, enabled: true, label: "T" },
+  wednesday: { value: 3, enabled: true, label: "W" },
+  thursday: { value: 4, enabled: true, label: "T" },
+  friday: { value: 5, enabled: true, label: "F" },
+  saturday: { value: 6, enabled: true, label: "S" },
+});
+
+// returns true if all days in the week are enabled
+const isEveryday = computed(() => Object.values(week).every(day => day.enabled))
 </script>
 
 <template>
   <create-habit-nav-bar />
   <main class="container mx-auto px-4 my-3">
     <form class="space-y-6">
+      <!-- Habit Name -->
       <fieldset class="card bg-base-200 p-4 space-y-1">
         <label class="text-sm opacity-50">Habit Name</label>
         <input class="input input-sm input-ghost text-lg px-0" placeholder="e.g. Meditate" />
       </fieldset>
 
+      <!-- Icon Select -->
       <fieldset class="card bg-base-200 p-4 space-y-2">
         <label class="text-sm opacity-50">Icon</label>
         <create-habit-icons />
       </fieldset>
 
+      <!-- Goal Value/Units -->
       <fieldset class="card bg-base-200 p-4 space-y-2">
         <label class="text-sm opacity-50">Goal</label>
         <div class="grid grid-cols-2 items-center justify-between">
 
-          <input type="number" placeholder="Amount" class="input border-none text-lg" />
+          <input type="number" placeholder="0" class="input border-none text-lg" />
 
           <div class="tabs tabs-sm tabs-box justify-around">
             <input type="radio" name="goal-unit" class="tab [--tab-bg:var(--color-primary)]" aria-label="Minutes"
               :checked="true" />
             <input type="radio" name="goal-unit" class="tab [--tab-bg:var(--color-primary)]" aria-label="Count" />
           </div>
-
         </div>
       </fieldset>
 
+      <!-- Set Reminder -->
       <fieldset class="card bg-base-200 p-4 space-y-2">
         <div class="flex justify-between items-center">
           <label class="text-lg">Reminders</label>
-          <input type="checkbox" :checked="false" class="toggle toggle-xl toggle-primary" />
+          <input type="checkbox" v-model="reminderEnabled" class="toggle toggle-xl toggle-primary" />
+        </div>
+
+        <div v-if="reminderEnabled" class="grid grid-cols-2 items-center">
+          <label class="text-lg">Time</label>
+          <input type="time" class="input" v-model="reminderTime" />
         </div>
       </fieldset>
 
+      <!-- Set Schedule -->
       <fieldset class="card bg-base-200 p-4 space-y-2">
-        <div class="flex justify-between items-center text-lg">
-          <label>Schedule</label>
-          <p class="opacity-50">Daily</p>
+        <div class="flex justify-between items-center">
+          <label class="text-lg">Schedule</label>
+          <p class="opacity-50">{{ isEveryday ? "Everyday" : "Weekly" }}</p>
         </div>
-        <div class="divider my-1"></div>
-        <div class="grid grid-cols-7">
-          <button type="button" class="btn btn-circle bg-primary text-neutral-content text-xl">S</button>
-          <button type="button" class="btn btn-circle bg-primary text-neutral-content text-xl">M</button>
-          <button type="button" class="btn btn-circle bg-primary text-neutral-content text-xl">T</button>
-          <button type="button" class="btn btn-circle bg-primary text-neutral-content text-xl">W</button>
-          <button type="button" class="btn btn-circle bg-primary text-neutral-content text-xl">T</button>
-          <button type="button" class="btn btn-circle bg-primary text-neutral-content text-xl">F</button>
-          <button type="button" class="btn btn-circle bg-primary text-neutral-content text-xl">S</button>
+        <div class="grid grid-cols-7 gap-2 mt-1">
+          <template v-for="day in week" :key="day.value">
+            <input type="checkbox" :aria-label="day.label" v-model="day.enabled"
+              :class="day.enabled ? 'bg-primary' : 'bg-base-100'" class="btn btn-circle text-neutral-content text-xl" />
+          </template>
         </div>
       </fieldset>
 
-      <button type="submit" class="btn btn-primary btn-xl text-lg btn-block text-neutral-content">Create
-        Habit</button>
+
+      <button type="submit" class="btn btn-primary btn-xl text-lg btn-block text-neutral-content">
+        Create Habit
+      </button>
 
 
     </form>
@@ -65,13 +89,6 @@ import CreateHabitIcons from "~/components/create/CreateHabitIcons.vue";
 </template>
 
 <style lang="css" scoped>
-/* remove arrows from number input */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
 .toggle {
   border-radius: 9999px;
 }

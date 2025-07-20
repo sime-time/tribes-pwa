@@ -54,12 +54,3 @@ onMounted(async () => await sendCodeToEmail(email));
     </form>
   </main>
 </template>
-
-<style lang="css" scoped>
-/* remove arrows from number input */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-</style>

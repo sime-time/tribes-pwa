@@ -5,7 +5,7 @@ import CreateHabitIcons from "~/components/create/CreateHabitIcons.vue";
 
 <template>
   <create-habit-nav-bar />
-  <main class="container mx-auto px-4">
+  <main class="container mx-auto px-4 my-3">
     <form class="space-y-6">
       <fieldset class="card bg-base-200 p-4 space-y-1">
         <label class="text-sm opacity-50">Habit Name</label>
@@ -19,14 +19,16 @@ import CreateHabitIcons from "~/components/create/CreateHabitIcons.vue";
 
       <fieldset class="card bg-base-200 p-4 space-y-2">
         <label class="text-sm opacity-50">Goal</label>
-        <div class="flex items-center justify-between">
-          <input type="number" placeholder="Amount" class="input border-none text-lg flex-1" />
+        <div class="grid grid-cols-2 items-center justify-between">
 
-          <div class="tabs tabs-box justify-end flex-1.5">
+          <input type="number" placeholder="Amount" class="input border-none text-lg" />
+
+          <div class="tabs tabs-sm tabs-box justify-around">
             <input type="radio" name="goal-unit" class="tab [--tab-bg:var(--color-primary)]" aria-label="Minutes"
               :checked="true" />
             <input type="radio" name="goal-unit" class="tab [--tab-bg:var(--color-primary)]" aria-label="Count" />
           </div>
+
         </div>
       </fieldset>
 

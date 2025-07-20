@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import IconSettings from "~icons/tabler/settings";
-import IconPlus from "~icons/tabler/plus";
 import IconLogout from "~icons/tabler/logout-2";
 import IconUser from "~icons/solar/user-circle-outline";
 import IconSort from "~icons/tabler/arrows-sort";
 import IconAdjust from "~icons/tabler/adjustments-horizontal";
+import HabitModalForm from "./HabitModalForm.vue";
 import { useAuthStore } from "~/stores/auth-store";
 import { haptic } from "~/plugins/haptic";
 
@@ -14,6 +14,7 @@ async function handleSignOut() {
   haptic.confirm();
   await authStore.signOut();
 }
+
 </script>
 
 <template>
@@ -60,9 +61,7 @@ async function handleSignOut() {
     </div>
 
     <div class="navbar-end">
-      <button class="btn bg-base-100 btn-circle text-primary" @click="() => haptic()">
-        <icon-plus style="font-size: 1.4em" />
-      </button>
+      <habit-modal-form />
     </div>
 
   </div>

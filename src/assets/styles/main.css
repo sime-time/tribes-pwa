@@ -52,3 +52,8 @@ button:active {
   opacity: 0.8;
   transform: translateY(0.5px) scale(0.98);
 }
+/* the height of the dock is 4rem, make the bottom margin slightly taller */
+.mb-dock {
+  margin-bottom: 5rem;
+  margin-bottom: calc(5rem + env(safe-area-inset-bottom));
+}

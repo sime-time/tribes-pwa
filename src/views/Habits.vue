@@ -17,11 +17,3 @@ import HabitProgressTotal from "~/components/habit/HabitProgressTotal.vue";
   </main>
   <TabDock tab="habits" />
 </template>
-
-<style scoped lang="css">
-/* the height of the dock is 4rem, make the bottom margin slightly taller */
-.mb-dock {
-  margin-bottom: 5rem;
-  margin-bottom: calc(5rem + env(safe-area-inset-bottom));
-}
-</style>

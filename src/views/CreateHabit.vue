@@ -19,8 +19,8 @@ import CreateHabitIcons from "~/components/create/CreateHabitIcons.vue";
 
       <fieldset class="card bg-base-200 p-4 space-y-2">
         <label class="text-sm opacity-50">Goal</label>
-        <div class="flex justify-between items-center">
-          <input type="number" placeholder="Amount" class="input border-none w-fit" />
+        <div class="grid grid-cols-2 items-center justify-between">
+          <input type="number" placeholder="Amount" class="input border-none" />
 
           <div class="tabs tabs-box justify-end">
             <input type="radio" name="goal-unit" class="tab [--tab-bg:var(--color-primary)]" aria-label="Minutes"

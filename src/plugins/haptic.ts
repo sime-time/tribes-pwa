@@ -47,7 +47,7 @@ haptic.confirm = () => {
     try {
       // [vibrate, pause, vibrate] in ms
       navigator.vibrate([10, 120, 10]);
-    } catch { }
+    } catch {}
     return;
   }
   haptic(); // immediate haptic
@@ -59,7 +59,7 @@ haptic.error = () => {
     try {
       // [vibrate, pause, vibrate, pause, vibrate] in ms
       navigator.vibrate([10, 110, 10, 110, 10]);
-    } catch { }
+    } catch {}
     return;
   }
   haptic(); // immediate haptic

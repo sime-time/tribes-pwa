@@ -160,7 +160,6 @@ export const useAuthStore = defineStore("useAuthStore", () => {
       console.log("email verified!");
       setAuth(true, verifyEmailAttempt.data.user as User);
       router.push("/");
-
     } catch (error) {
       console.error("Error", error);
       toast.error("Something went wrong...");

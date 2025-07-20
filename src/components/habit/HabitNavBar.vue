@@ -3,8 +3,8 @@ import IconSettings from "~icons/tabler/settings";
 import IconLogout from "~icons/tabler/logout-2";
 import IconUser from "~icons/solar/user-circle-outline";
 import IconSort from "~icons/tabler/arrows-sort";
+import IconPlus from "~icons/tabler/plus";
 import IconAdjust from "~icons/tabler/adjustments-horizontal";
-import HabitModalForm from "./HabitModalForm.vue";
 import { useAuthStore } from "~/stores/auth-store";
 import { haptic } from "~/plugins/haptic";
 
@@ -14,11 +14,10 @@ async function handleSignOut() {
   haptic.confirm();
   await authStore.signOut();
 }
-
 </script>
 
 <template>
-  <div class="navbar bg-base-300">
+  <div class="navbar">
 
     <div class="navbar-start">
       <div class="dropdown">
@@ -26,7 +25,7 @@ async function handleSignOut() {
           <icon-settings style="font-size: 1.5em" />
         </button>
         <ul tabindex="0"
-          class="menu menu-lg dropdown-content bg-base-200 rounded-box z-1 mt-3 w-52 p-2 shadow space-y-2">
+          class="menu menu-lg dropdown-content bg-base-200 rounded-box z-1 mt-3 w-52 p-3 shadow space-y-3">
 
           <li>
             <router-link to="/profile" class="bg-base-100">
@@ -61,7 +60,9 @@ async function handleSignOut() {
     </div>
 
     <div class="navbar-end">
-      <habit-modal-form />
+      <router-link to="/create-habit" class="btn bg-base-200 btn-circle text-primary" @click="() => haptic()">
+        <icon-plus style="font-size: 1.4em" />
+      </router-link>
     </div>
 
   </div>

@@ -7,6 +7,7 @@ import SignUp from "~/views/(auth)/SignUp.vue";
 import VerifyEmail from "~/views/(auth)/VerifyEmail.vue";
 import Tribe from "~/views/Tribe.vue";
 import Stats from "~/views/Stats.vue";
+import CreateHabit from "~/views/CreateHabit.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -40,6 +41,11 @@ const router = createRouter({
       path: "/stats",
       name: "stats",
       component: Stats,
+    },
+    {
+      path: "/create-habit",
+      name: "create-habit",
+      component: CreateHabit,
     },
   ],
 });

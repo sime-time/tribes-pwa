@@ -7,7 +7,7 @@ import HabitProgressTotal from "~/components/habit/HabitProgressTotal.vue";
 
 <template>
   <HabitNavBar />
-  <main class="flex flex-col items-center gap-8 mt-16 mb-24 px-[1rem]">
+  <main class="flex flex-col items-center gap-8 mt-12 mb-24 px-[1rem]">
     <HabitProgressTotal :percent="62" />
     <div class="grid grid-cols-1 gap-4 w-full">
       <HabitCard name="meditate" :value="20" unit="min" />

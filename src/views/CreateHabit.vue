@@ -18,11 +18,13 @@ const week = reactive({
 
 // returns true if all days in the week are enabled
 const isEveryday = computed(() => Object.values(week).every(day => day.enabled))
+
+
 </script>
 
 <template>
   <create-habit-nav-bar />
-  <main class="container mx-auto px-4 my-3">
+  <main class="container mx-auto px-4 mt-3 mb-6">
     <form class="space-y-6">
       <!-- Habit Name -->
       <fieldset class="card bg-base-200 p-4 space-y-1">
@@ -33,7 +35,7 @@ const isEveryday = computed(() => Object.values(week).every(day => day.enabled))
       <!-- Icon Select -->
       <fieldset class="card bg-base-200 p-4 space-y-2">
         <label class="text-sm opacity-50">Icon</label>
-        <create-habit-icons />
+        <create-habit-icons model-value="solar:meditation-outline" />
       </fieldset>
 
       <!-- Goal Value/Units -->

@@ -1,31 +1,37 @@
 <script setup lang="ts">
+import { ref, defineEmits } from "vue";
 import IconMeditation from "~icons/solar/meditation-outline";
 import IconBook from "~icons/solar/book-2-linear";
 import IconDumbbell from "~icons/solar/dumbbell-large-outline";
 import IconTreadmill from "~icons/solar/treadmill-bold";
 import IconAlarm from "~icons/solar/alarm-outline";
-import IconPlus from "~icons/tabler/plus";
+import IconKitchen from "~icons/tabler/tools-kitchen-2";
+
+const availableIcons = [
+  { id: "solar:meditation-outline", component: IconMeditation },
+  { id: "solar:dumbbell-large-outline", component: IconDumbbell },
+  { id: "solar:book-2-linear", component: IconBook },
+  { id: "solar:treadmill-bold", component: IconTreadmill },
+  { id: "solar:alarm-outline", component: IconAlarm },
+  { id: "tabler:tools-kitchen-2", component: IconKitchen },
+];
+
+const selectedIcon = ref(availableIcons[0].id);
+
+const emit = defineEmits(["newHabitIcon"]);
+function onIconSelect(icon: string) {
+  selectedIcon.value = icon;
+  emit("newHabitIcon", icon);
+}
 </script>
 
 <template>
   <div class="grid grid-cols-6 gap-2">
-    <button type="button" class="btn btn-circle btn-lg size-13 bg-primary text-neutral-content text-xl">
-      <icon-meditation />
-    </button>
-    <button type="button" class="btn btn-circle btn-lg size-13 bg-base-100 text-neutral-content text-xl">
-      <icon-dumbbell />
-    </button>
-    <button type="button" class="btn btn-circle btn-lg size-13 bg-base-100 text-neutral-content text-xl">
-      <icon-book />
-    </button>
-    <button type="button" class="btn btn-circle btn-lg size-13 bg-base-100 text-neutral-content text-xl">
-      <icon-treadmill />
-    </button>
-    <button type="button" class="btn btn-circle btn-lg size-13 bg-base-100 text-neutral-content text-xl">
-      <icon-alarm />
-    </button>
-    <button type="button" class="btn btn-circle btn-lg size-13 bg-base-100 text-neutral-content text-xl">
-      <icon-plus />
-    </button>
+    <template v-for="icon in availableIcons" :key="icon.id">
+      <button type="button" class="btn btn-circle btn-lg text-neutral-content text-xl"
+        :class="selectedIcon === icon.id ? 'bg-primary' : 'bg-base-100'" @click="() => onIconSelect(icon.id)">
+        <component :is="icon.component" />
+      </button>
+    </template>
   </div>
 </template>

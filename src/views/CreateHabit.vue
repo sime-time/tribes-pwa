@@ -15,10 +15,23 @@ const week = reactive({
   friday: { value: 5, enabled: true, label: "F" },
   saturday: { value: 6, enabled: true, label: "S" },
 });
-
 // returns true if all days in the week are enabled
 const isEveryday = computed(() => Object.values(week).every(day => day.enabled))
 
+const habitIcon = ref<string | null>(null);
+function changeHabitIcon(icon: string) {
+  habitIcon.value = icon;
+}
+
+const habit = reactive({
+  name: "",
+  icon: "",
+  goalValue: 0,
+  goalUnit: "",
+  reminderEnabled: true,
+  reminderTime: "",
+  schedule: {},
+});
 
 </script>
 
@@ -35,7 +48,7 @@ const isEveryday = computed(() => Object.values(week).every(day => day.enabled))
       <!-- Icon Select -->
       <fieldset class="card bg-base-200 p-4 space-y-2">
         <label class="text-sm opacity-50">Icon</label>
-        <create-habit-icons model-value="solar:meditation-outline" />
+        <create-habit-icons @habit-icon-selected="changeHabitIcon" />
       </fieldset>
 
       <!-- Goal Value/Units -->

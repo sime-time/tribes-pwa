@@ -16,12 +16,12 @@ const availableIcons = [
   { id: "tabler:tools-kitchen-2", component: IconKitchen },
 ];
 
-const selectedIcon = ref(availableIcons[0].id);
+const selectedIcon = ref<string | null>(null);
 
-const emit = defineEmits(["newHabitIcon"]);
+const emit = defineEmits(["habitIconSelected"]);
 function onIconSelect(icon: string) {
   selectedIcon.value = icon;
-  emit("newHabitIcon", icon);
+  emit("habitIconSelected", icon);
 }
 </script>
 

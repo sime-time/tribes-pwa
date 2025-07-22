@@ -1,10 +1,16 @@
 <script setup lang="ts">
-import { ref, reactive, computed, watch } from "vue";
+import { reactive, computed } from "vue";
 import CreateHabitNavBar from "~/components/create/CreateHabitNavBar.vue";
 import CreateHabitIcons from "~/components/create/CreateHabitIcons.vue";
 
-const reminderEnabled = ref(false);
-const reminderTime = ref(null);
+const habit = reactive({
+  name: "",
+  icon: "",
+  goalValue: 0,
+  goalUnit: "",
+  reminderEnabled: false,
+  reminderTime: "",
+});
 
 const week = reactive({
   sunday: { value: 0, enabled: true, label: "S" },
@@ -16,33 +22,27 @@ const week = reactive({
   saturday: { value: 6, enabled: true, label: "S" },
 });
 // returns true if all days in the week are enabled
-const isEveryday = computed(() => Object.values(week).every(day => day.enabled))
+const isEveryday = computed(() =>
+  Object.values(week).every((day) => day.enabled),
+);
 
-const habitIcon = ref<string | null>(null);
 function changeHabitIcon(icon: string) {
-  habitIcon.value = icon;
+  habit.icon = icon;
 }
 
-const habit = reactive({
-  name: "",
-  icon: "",
-  goalValue: 0,
-  goalUnit: "",
-  reminderEnabled: true,
-  reminderTime: "",
-  schedule: {},
-});
-
+function onSubmit() {
+  console.table(habit);
+}
 </script>
 
 <template>
   <create-habit-nav-bar />
   <main class="container mx-auto px-4 mt-3 mb-6">
-    <form class="space-y-6">
+    <form class="space-y-6" @submit.prevent="onSubmit">
       <!-- Habit Name -->
       <fieldset class="card bg-base-200 p-4 space-y-1">
         <label class="text-sm opacity-50">Habit Name</label>
-        <input class="input input-sm input-ghost text-lg px-0" placeholder="e.g. Meditate" />
+        <input v-model="habit.name" class="input input-sm input-ghost text-lg px-0" placeholder="e.g. Meditate" />
       </fieldset>
 
       <!-- Icon Select -->
@@ -56,12 +56,13 @@ const habit = reactive({
         <label class="text-sm opacity-50">Goal</label>
         <div class="grid grid-cols-2 items-center justify-between">
 
-          <input type="number" placeholder="0" class="input border-none text-lg" />
+          <input type="number" v-model="habit.goalValue" placeholder="0" class="input border-none text-lg" />
 
           <div class="tabs tabs-sm tabs-box justify-around">
             <input type="radio" name="goal-unit" class="tab [--tab-bg:var(--color-primary)]" aria-label="Minutes"
-              :checked="true" />
-            <input type="radio" name="goal-unit" class="tab [--tab-bg:var(--color-primary)]" aria-label="Count" />
+              value="minutes" v-model="habit.goalUnit" />
+            <input type="radio" name="goal-unit" class="tab [--tab-bg:var(--color-primary)]" aria-label="Count"
+              value="count" v-model="habit.goalUnit" />
           </div>
         </div>
       </fieldset>
@@ -70,12 +71,12 @@ const habit = reactive({
       <fieldset class="card bg-base-200 p-4 space-y-2">
         <div class="flex justify-between items-center">
           <label class="text-lg">Reminders</label>
-          <input type="checkbox" v-model="reminderEnabled" class="toggle toggle-xl toggle-primary" />
+          <input type="checkbox" v-model="habit.reminderEnabled" class="toggle toggle-xl toggle-primary" />
         </div>
 
-        <div v-if="reminderEnabled" class="grid grid-cols-2 items-center">
+        <div v-if="habit.reminderEnabled" class="grid grid-cols-2 items-center">
           <label class="text-lg">Time</label>
-          <input type="time" class="input" v-model="reminderTime" />
+          <input type="time" class="input" v-model="habit.reminderTime" />
         </div>
       </fieldset>
 

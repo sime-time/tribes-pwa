@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, defineEmits } from "vue";
+import { ref } from "vue";
 import IconMeditation from "~icons/solar/meditation-outline";
 import IconBook from "~icons/solar/book-2-linear";
 import IconDumbbell from "~icons/solar/dumbbell-large-outline";

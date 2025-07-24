@@ -1,7 +1,17 @@
 <script setup lang="ts">
-import { reactive, computed } from "vue";
+import { ref, reactive, computed } from "vue";
 import CreateHabitNavBar from "~/components/create/CreateHabitNavBar.vue";
 import CreateHabitIcons from "~/components/create/CreateHabitIcons.vue";
+import { HabitSchema } from "~/validation/habit-zod";
+import { useToast } from "vue-toastification";
+import { z } from "zod/v4";
+import { useAuthStore } from "~/stores/auth-store";
+import { storeToRefs } from "pinia";
+import router from "~/router/index";
+
+// get the user id from auth store
+const authStore = useAuthStore();
+const { user } = storeToRefs(authStore);
 
 const habit = reactive({
   name: "",
@@ -21,6 +31,7 @@ const week = reactive({
   friday: { value: 5, enabled: true, label: "F" },
   saturday: { value: 6, enabled: true, label: "S" },
 });
+
 // returns true if all days in the week are enabled
 const isEveryday = computed(() =>
   Object.values(week).every((day) => day.enabled),
@@ -30,8 +41,62 @@ function changeHabitIcon(icon: string) {
   habit.icon = icon;
 }
 
-function onSubmit() {
-  console.table(habit);
+const loading = ref(false);
+const toast = useToast();
+
+async function onSubmit() {
+  loading.value = true;
+  try {
+    const type = isEveryday.value ? "daily" : "weekly";
+
+    // loop through the week and add enabled days to the array
+    let days: number[] = [];
+    for (const day of Object.values(week)) {
+      if (day.enabled) {
+        days.push(day.value);
+      }
+    }
+
+    // validate the input
+    const validHabit = HabitSchema.parse({
+      userId: user.value?.id,
+      ...habit,
+      schedule: {
+        type: type,
+        days: days,
+      },
+    });
+
+    // insert the new habit into the database
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/habit/create`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(validHabit),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to create habit on the server");
+    }
+
+    const result = await response.json();
+    console.log("Habit created successfully", result);
+    toast.success("New habit created!");
+
+    // back to the main habits view
+    router.push("/");
+
+  } catch (error) {
+    console.error("Error creating new habit", error);
+    if (error instanceof z.ZodError) {
+      toast.error(error.issues[0].message);
+    } else {
+      toast.error("Something went wrong");
+    }
+  } finally {
+    loading.value = false;
+  }
 }
 </script>
 
